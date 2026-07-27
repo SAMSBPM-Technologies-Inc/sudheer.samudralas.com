@@ -87,7 +87,7 @@
     .nav-logo:hover { background: var(--ink); }
     .nav-logo:hover img { filter: invert(1); }
     .nav-logo img { height: 30px; display: block; }
-    .nav-logo-icon { display: none; }
+    .nav-logo-icon { display: none !important; }
     .nav-links { display: flex; align-items: stretch; flex: 1; overflow-x: auto; }
     .nav-link {
       text-decoration: none; color: var(--ink); font-family: 'Space Mono', monospace;
@@ -359,38 +359,46 @@
       .nav-links, .nav-resume { display: none; }
       .nav-hamburger { display: block; }
       .nav { position: relative; }
-      .nav-logo-lockup { display: none; }
-      .nav-logo-icon { display: block; height: 36px; }
+      .nav-logo-lockup { display: none !important; }
+      .nav-logo-icon { display: block !important; height: 36px; }
     }
 
     @media (max-width: 600px) {
-      .hero { padding: 52px 20px 48px; }
-      .hero-bio { font-size: 14px; }
-      .about, .experience, .skills, .hobbies, .certs, .contact { padding-left: 20px; padding-right: 20px; }
-      .samsbpm { padding-left: 20px; padding-right: 20px; }
+      /* Section vertical padding */
+      .hero { padding: 48px 20px 44px; }
+      .about { padding-top: 48px; padding-bottom: 48px; padding-left: 20px; padding-right: 20px; }
+      .experience { padding-top: 48px; padding-bottom: 48px; padding-left: 20px; padding-right: 20px; }
+      .skills { padding-top: 48px; padding-bottom: 48px; padding-left: 20px; padding-right: 20px; }
+      .hobbies { padding-top: 48px; padding-bottom: 48px; padding-left: 20px; padding-right: 20px; }
+      .certs { padding-top: 28px; padding-bottom: 28px; padding-left: 20px; padding-right: 20px; }
+      .contact { padding-top: 48px; padding-left: 20px; padding-right: 20px; }
+      .samsbpm { padding-top: 48px; padding-bottom: 48px; padding-left: 20px; padding-right: 20px; }
       .samsbpm-credit { padding-left: 20px; padding-right: 20px; }
 
-      /* Stack hero buttons */
+      /* Hero */
+      .hero-bio { font-size: 14px; }
       .hero-cta { flex-direction: column; }
+      .btn-solid, .btn-outline { text-align: center; }
       .btn-outline { border-left: 2px solid var(--ink); border-top: none; }
 
-      /* Stack contact buttons */
+      /* About photo centered */
+      .about-photo-frame { margin-left: auto; margin-right: auto; }
+
+      /* Contact buttons */
       .contact-btns { flex-direction: column; }
       .contact-link { border-left: 2px solid var(--ink); border-top: none; }
       .contact-email, .contact-link { font-size: 12px; padding: 12px 18px; word-break: break-all; }
 
-      /* Stack SAMSBPM CTA */
+      /* SAMSBPM CTA */
       .samsbpm-cta { flex-direction: column; align-items: flex-start; }
       .samsbpm-ext { border-left: 1px solid #444; border-top: none; }
 
-      /* Hobby cards stacked */
+      /* Hobby cards */
       .hobby-card { border-right: none; border-bottom: 1px solid var(--ink); }
       .hobby-card:last-child { border-bottom: none; }
 
-      /* Toggle button */
+      /* Toggle & stats */
       .toggle-btn { font-size: 11px; padding: 10px 14px; }
-
-      /* Stats */
       .stat { padding: 24px 16px; }
     }
   </style>
