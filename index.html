@@ -87,6 +87,7 @@
     .nav-logo:hover { background: var(--ink); }
     .nav-logo:hover img { filter: invert(1); }
     .nav-logo img { height: 30px; display: block; }
+    .nav-logo-icon { display: none; }
     .nav-links { display: flex; align-items: stretch; flex: 1; overflow-x: auto; }
     .nav-link {
       text-decoration: none; color: var(--ink); font-family: 'Space Mono', monospace;
@@ -358,6 +359,8 @@
       .nav-links, .nav-resume { display: none; }
       .nav-hamburger { display: block; }
       .nav { position: relative; }
+      .nav-logo-lockup { display: none; }
+      .nav-logo-icon { display: block; height: 36px; }
     }
 
     @media (max-width: 600px) {
@@ -397,7 +400,8 @@
 <!-- NAV -->
 <nav class="nav" id="mainNav">
   <a href="#top" class="nav-logo">
-    <img src="assets/logo/logo-lockup-light.svg" alt="Sudheer Samudrala">
+    <img src="assets/logo/logo-lockup-light.svg" alt="Sudheer Samudrala" class="nav-logo-lockup">
+    <img src="assets/logo/logo-icon-light-bg.svg" alt="Sudheer Samudrala" class="nav-logo-icon">
   </a>
   <div class="nav-links">
     <a href="#about" class="nav-link">ABOUT</a>
