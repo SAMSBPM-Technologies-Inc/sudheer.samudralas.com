@@ -91,12 +91,13 @@
     .nav-logo-lockup { display: none !important; }
     .nav-logo-icon { display: block !important; height: 30px; }
     .nav-logo-name {
-      display: flex;
-      flex-direction: column; justify-content: center;
+      display: flex; align-items: center;
       font-family: 'Space Mono', monospace; font-weight: 700;
-      font-size: 13px; line-height: 1.1; letter-spacing: 0.02em;
+      font-size: 20px; line-height: 1; letter-spacing: 0.02em;
       color: var(--ink); text-transform: uppercase; margin-left: 12px;
+      white-space: nowrap;
     }
+    .nav-logo-name span + span::before { content: '\00A0'; }
     .nav-logo:hover .nav-logo-name { color: var(--paper); }
     .nav-links { display: flex; align-items: stretch; flex: 1; overflow-x: auto; }
     .nav-link {
@@ -370,7 +371,11 @@
       .nav-hamburger { display: block; }
       .nav { position: relative; }
       .nav-logo-icon { height: 36px; }
-      .nav-logo-name { font-size: 13px; }
+      .nav-logo-name {
+        flex-direction: column; align-items: flex-start;
+        font-size: 13px; line-height: 1.25; white-space: normal;
+      }
+      .nav-logo-name span + span::before { content: none; }
     }
 
     @media (max-width: 600px) {
