@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sudheer Samudrala — Pega Lead System Architect</title>
+  <meta name="description" content="16+ years leading enterprise Pega delivery for Canadian banks and insurers. Pega Lead System Architect and founder of SAMSBPM Technologies.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0a0a0a;
+      --paper: #ffffff;
+      --accent: #d4ff3d;
+      --muted: #5a5a5a;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Space Mono', monospace; background: var(--paper); color: var(--ink); min-height: 100vh; }
+
+    @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* NAV */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--paper); border-bottom: 2px solid var(--ink);
+    }
+    .nav-logo {
+      padding: 16px 24px; text-decoration: none; color: var(--ink);
+      font-family: 'Space Mono', monospace; font-weight: 700; font-size: 13px;
+      border-right: 1px solid var(--ink); white-space: nowrap;
+    }
+    .nav-logo:hover { background: var(--ink); color: var(--paper); }
+    .nav-links { display: flex; align-items: stretch; flex: 1; overflow-x: auto; }
+    .nav-link {
+      text-decoration: none; color: var(--ink); font-family: 'Space Mono', monospace;
+      font-size: 12px; padding: 16px 18px; border-right: 1px solid var(--ink);
+      display: flex; align-items: center; white-space: nowrap;
+    }
+    .nav-link:hover { background: var(--ink); color: var(--paper); }
+    .nav-resume {
+      text-decoration: none; padding: 16px 22px;
+      background: var(--ink); color: var(--accent);
+      font-family: 'Space Mono', monospace; font-weight: 700; font-size: 12px; white-space: nowrap;
+    }
+    .nav-resume:hover { background: var(--accent); color: var(--ink); }
+
+    /* HERO */
+    .hero {
+      padding: 96px 40px 84px; border-bottom: 2px solid var(--ink);
+      animation: fadeUp .5s ease both;
+    }
+    .hero-inner { max-width: 880px; }
+    .hero-prompt { font-size: 14px; color: var(--muted); margin-bottom: 20px; }
+    .hero h1 {
+      font-size: clamp(34px, 5.2vw, 58px); line-height: 1.18;
+      margin: 0 0 22px; font-weight: 700; text-transform: uppercase; letter-spacing: -0.01em;
+    }
+    .hero-cursor { display: inline-block; animation: blink 1s step-start infinite; }
+    .hero-meta { font-size: 13px; color: var(--muted); margin-bottom: 28px; }
+    .hero-bio { font-size: 16px; line-height: 1.7; max-width: 600px; margin: 0 0 36px; color: #242424; }
+    .hero-cta { display: flex; flex-wrap: wrap; }
+    .btn-solid {
+      text-decoration: none; padding: 14px 26px;
+      background: var(--ink); color: var(--accent);
+      font-family: 'Space Mono', monospace; font-weight: 700; font-size: 13px;
+    }
+    .btn-solid:hover { background: var(--accent); color: var(--ink); }
+    .btn-outline {
+      text-decoration: none; padding: 14px 26px;
+      border: 2px solid var(--ink); border-left: none;
+      color: var(--ink); font-family: 'Space Mono', monospace; font-size: 13px;
+    }
+    .btn-outline:hover { background: var(--ink); color: var(--paper); }
+
+    /* STATS */
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+    .stat {
+      padding: 32px 24px; text-align: center;
+      border-right: 1px solid var(--ink); border-bottom: 2px solid var(--ink);
+    }
+    .stat-value { font-size: clamp(28px, 4vw, 38px); font-weight: 700; }
+    .stat-label { font-size: 11px; color: var(--muted); margin-top: 8px; text-transform: uppercase; letter-spacing: .04em; }
+
+    /* ABOUT */
+    .about {
+      padding: 80px 40px; max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 0.8fr 1.6fr; gap: 56px;
+      border-bottom: 2px solid var(--ink);
+    }
+    .about-photo-frame {
+      width: 100%; max-width: 260px; aspect-ratio: 2/3;
+      border: 3px solid var(--ink); margin-bottom: 24px; overflow: hidden;
+    }
+    .about-photo-frame img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      filter: grayscale(1) contrast(1.12);
+    }
+    .section-eyebrow { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+    .section-h2 { font-size: clamp(24px, 3vw, 32px); margin: 0; font-weight: 700; text-transform: uppercase; }
+    .about-text p { font-size: 16px; line-height: 1.75; margin: 0 0 20px; }
+    .about-text p:last-child { margin: 0; color: var(--muted); }
+
+    /* EXPERIENCE */
+    .experience {
+      padding: 80px 40px; max-width: 1200px; margin: 0 auto;
+      border-bottom: 2px solid var(--ink);
+    }
+    .experience .section-h2 { margin: 0 0 40px; }
+    .job { padding: 26px 0; border-top: 1px solid var(--ink); }
+    .job-period-tag {
+      font-size: 13px; color: var(--accent); background: var(--ink);
+      display: inline-block; padding: 3px 10px; margin-bottom: 12px;
+    }
+    .job-period-muted { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+    .job-role { font-size: 18px; font-weight: 700; text-transform: uppercase; }
+    .job-org { font-size: 13px; color: var(--muted); margin: 4px 0 14px; }
+    .job-desc { font-size: 14px; line-height: 1.7; max-width: 720px; margin: 0; }
+    .job-older .job-role { font-size: 16px; }
+
+    .toggle-wrap { padding: 20px 0 0; border-top: 1px solid var(--ink); }
+    .toggle-btn {
+      cursor: pointer; display: inline-flex; align-items: center; gap: 10px;
+      font-family: 'Space Mono', monospace; font-size: 13px;
+      padding: 10px 18px; border: 1px solid var(--ink); background: none; color: var(--ink);
+    }
+    .toggle-btn:hover { background: var(--ink); color: var(--paper); }
+    .full-history { display: none; }
+    .full-history.visible { display: block; }
+
+    /* SKILLS */
+    .skills {
+      padding: 80px 40px; max-width: 1200px; margin: 0 auto;
+      border-bottom: 2px solid var(--ink);
+    }
+    .skills .section-h2 { margin: 0 0 40px; }
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      border: 1px solid var(--ink); border-right: none; border-bottom: none;
+    }
+    .skill-card { padding: 22px; border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+    .skill-card-title { font-size: 13px; font-weight: 700; margin-bottom: 14px; text-transform: uppercase; }
+    .skill-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip { font-size: 11px; border: 1px solid var(--ink); padding: 5px 9px; }
+
+    /* SAMSBPM */
+    .samsbpm {
+      background: var(--ink); color: var(--paper);
+      padding: 80px 40px; border-bottom: 2px solid var(--ink);
+    }
+    .samsbpm-inner { max-width: 1200px; margin: 0 auto; }
+    .samsbpm-eyebrow { font-size: 12px; color: var(--accent); margin-bottom: 10px; }
+    .samsbpm h2 { font-size: clamp(24px, 3vw, 32px); margin: 0 0 20px; font-weight: 700; text-transform: uppercase; }
+    .samsbpm-intro { font-size: 15px; line-height: 1.75; color: #c9c9c9; max-width: 760px; margin: 0 0 40px; }
+    .samsbpm-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      border: 1px solid #333; border-right: none; border-bottom: none; margin-bottom: 36px;
+    }
+    .samsbpm-card { padding: 24px; border-right: 1px solid #333; border-bottom: 1px solid #333; }
+    .samsbpm-card-name { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+    .samsbpm-card-tag { font-size: 13px; color: #a8a8a8; margin-bottom: 16px; min-height: 40px; }
+    .samsbpm-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .samsbpm-chip { font-size: 11px; color: var(--accent); border: 1px solid #444; padding: 4px 8px; }
+    .samsbpm-cta { display: flex; flex-wrap: wrap; align-items: center; }
+    .samsbpm-view-all {
+      text-decoration: none; padding: 13px 24px;
+      background: var(--accent); color: var(--ink); font-weight: 700; font-size: 13px;
+      font-family: 'Space Mono', monospace;
+    }
+    .samsbpm-view-all:hover { background: var(--paper); }
+    .samsbpm-ext {
+      text-decoration: none; padding: 13px 24px; color: #c9c9c9;
+      font-size: 13px; border: 1px solid #444; border-left: none;
+      font-family: 'Space Mono', monospace;
+    }
+    .samsbpm-ext:hover { color: var(--paper); border-color: #888; }
+
+    /* CERTIFICATIONS */
+    .certs {
+      padding: 44px 40px; max-width: 1200px; margin: 0 auto;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+      border-bottom: 2px solid var(--ink);
+    }
+    .certs-label { font-size: 12px; color: var(--muted); }
+    .cert-badge { font-size: 12px; border: 1px solid var(--ink); padding: 7px 14px; }
+
+    /* HOBBIES */
+    .hobbies {
+      padding: 80px 40px; max-width: 1200px; margin: 0 auto;
+      border-bottom: 2px solid var(--ink);
+    }
+    .hobbies h2 { font-size: clamp(24px, 3vw, 32px); margin: 0 0 12px; font-weight: 700; text-transform: uppercase; }
+    .hobbies-intro { font-size: 15px; line-height: 1.7; color: var(--muted); max-width: 680px; margin: 0 0 40px; }
+    .gallery-label { margin-bottom: 16px; font-size: 13px; font-weight: 700; text-transform: uppercase; }
+    .gallery {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 2px; margin-bottom: 56px; border: 1px solid var(--ink);
+    }
+    .gallery-item { aspect-ratio: 1; overflow: hidden; cursor: pointer; }
+    .gallery-item img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      filter: contrast(1.08) saturate(1.1);
+    }
+    .gallery-item img:hover { filter: contrast(1.15) saturate(1.25); }
+    .hobby-cards {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      border: 1px solid var(--ink); border-right: none;
+    }
+    .hobby-card { padding: 20px; border-right: 1px solid var(--ink); }
+    .hobby-card-title { font-size: 13px; font-weight: 700; margin-bottom: 14px; text-transform: uppercase; }
+    .hobby-card img {
+      width: 100%; height: 220px; object-fit: cover; display: block;
+      filter: grayscale(1) contrast(1.1);
+    }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 100;
+      background: rgba(10,10,10,0.94); align-items: center; justify-content: center;
+      padding: 40px; cursor: pointer;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: min(900px, 90vw); max-height: 82vh;
+      border: 3px solid #fff; filter: contrast(1.08) saturate(1.1);
+      pointer-events: none;
+    }
+    .lightbox-close {
+      position: absolute; top: 28px; right: 36px;
+      color: #fff; font-size: 14px; font-family: 'Space Mono', monospace;
+      pointer-events: none;
+    }
+
+    /* CONTACT */
+    .contact { padding: 80px 40px 40px; }
+    .contact-inner { max-width: 1200px; margin: 0 auto; }
+    .contact h2 {
+      font-size: clamp(24px, 3.6vw, 38px); margin: 0 0 28px; font-weight: 700;
+      text-transform: uppercase; max-width: 640px;
+    }
+    .contact-btns { display: flex; flex-wrap: wrap; margin-bottom: 56px; }
+    .contact-email {
+      text-decoration: none; padding: 14px 24px;
+      background: var(--ink); color: var(--accent); font-weight: 700; font-size: 13px;
+      font-family: 'Space Mono', monospace;
+    }
+    .contact-email:hover { background: var(--accent); color: var(--ink); }
+    .contact-link {
+      text-decoration: none; padding: 14px 24px;
+      border: 2px solid var(--ink); border-left: none;
+      color: var(--ink); font-size: 13px; font-family: 'Space Mono', monospace;
+    }
+    .contact-link:hover { background: var(--ink); color: var(--paper); }
+    .footer-bar {
+      display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;
+      border-top: 2px solid var(--ink); padding-top: 20px;
+      font-size: 12px; color: var(--muted);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 700px) {
+      .about { grid-template-columns: 1fr; gap: 32px; }
+      .hero { padding: 60px 24px 56px; }
+      .about, .experience, .skills, .hobbies, .certs, .contact { padding-left: 24px; padding-right: 24px; }
+      .samsbpm { padding-left: 24px; padding-right: 24px; }
+      .nav-link { padding: 14px 12px; font-size: 11px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#top" class="nav-logo">SUDHEER_SAMUDRALA</a>
+  <div class="nav-links">
+    <a href="#about" class="nav-link">ABOUT</a>
+    <a href="#experience" class="nav-link">EXPERIENCE</a>
+    <a href="#skills" class="nav-link">SKILLS</a>
+    <a href="#samsbpm" class="nav-link">SAMSBPM</a>
+    <a href="#hobbies" class="nav-link">HOBBIES</a>
+    <a href="#contact" class="nav-link">CONTACT</a>
+  </div>
+  <a href="resume.html" target="_blank" rel="noopener" class="nav-resume">[ RÉSUMÉ ↓ ]</a>
+</nav>
+
+<!-- HERO -->
+<div id="top" class="hero">
+  <div class="hero-inner">
+    <div class="hero-prompt">$ whoami</div>
+    <h1>Pega Lead System Architect<span class="hero-cursor">_</span></h1>
+    <div class="hero-meta">~/sudheer-samudrala · pega infinity 24.1 · waterloo, on</div>
+    <p class="hero-bio">16+ years leading enterprise Pega delivery for Canadian banks and insurers — case design, integrations, and distributed teams at scale. On the side, I also found and build SAMSBPM, a small SaaS studio.</p>
+    <div class="hero-cta">
+      <a href="resume.html" target="_blank" rel="noopener" class="btn-solid">[ DOWNLOAD RÉSUMÉ ]</a>
+      <a href="mailto:samudralasudheer@gmail.com" class="btn-outline">[ EMAIL ME ]</a>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-value">16+</div>
+    <div class="stat-label">Years in Pega delivery</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">13+</div>
+    <div class="stat-label">Years with Canadian FIs</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">5</div>
+    <div class="stat-label">Banks &amp; insurers served</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">5</div>
+    <div class="stat-label">SaaS products shipped</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div id="about" class="about">
+  <div>
+    <div class="about-photo-frame">
+      <img src="assets/portrait-enhanced.jpg" alt="Sudheer Samudrala">
+    </div>
+    <div class="section-eyebrow">[ 01 / ABOUT ]</div>
+    <h2 class="section-h2">Enterprise depth,<br>startup speed.</h2>
+  </div>
+  <div class="about-text">
+    <p>16+ years designing and delivering Pega solutions across banking, insurance, and healthcare — 13+ of them with Canadian financial institutions. I own solution design, impact analysis, and end-to-end delivery on every engagement, including a full DB2-to-Azure-SQL data migration and two platform version upgrades along the way — routine work in my experience, handled without drama.</p>
+    <p>I lead distributed onshore/offshore teams through estimation, design review, guardrail compliance, and production support — and stay hands-on with Constellation, Email Bot, Pega GenAI, and REST/SOAP integrations. Outside client work, I founded SAMSBPM Technologies, where I architect and ship multi-tenant SaaS platforms with embedded AI.</p>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<div id="experience" class="experience">
+  <div class="section-eyebrow">[ 02 / EXPERIENCE ]</div>
+  <h2 class="section-h2">Recent engagements.</h2>
+
+  <div class="job">
+    <div class="job-period-tag">&gt; Jun 2025 – Present</div>
+    <div class="job-role">Pega Technical Lead / Lead Software Engineer</div>
+    <div class="job-org">Sun Life · Waterloo, ON</div>
+    <p class="job-desc">GRS Ops – multi-channel intake (Email, Manual, Kafka, Kofax) routed through a single case lifecycle. Designed the REST integrations with SL Global and the Email Bot channel, alongside the Pega 8.6 → Infinity 24.1 upgrade.</p>
+  </div>
+  <div class="job">
+    <div class="job-period-tag">&gt; Jun 2024 – Jun 2025</div>
+    <div class="job-role">Pega Technical Lead / Lead System Architect</div>
+    <div class="job-org">Scotiabank (Contractor) · Toronto, ON</div>
+    <p class="job-desc">WealthOne – owned the end-to-end DB2 → Azure SQL Managed Instance data migration (schema mapping, reconciliation, performance validation), delivered alongside the PRPC 7.2 → Infinity 23.1 upgrade.</p>
+  </div>
+  <div class="job">
+    <div class="job-period-tag">&gt; Dec 2023 – Jun 2024</div>
+    <div class="job-role">Pega Technical Lead / Lead System Architect</div>
+    <div class="job-org">Sun Life (Contractor) · Toronto, ON</div>
+    <p class="job-desc">FRM – Fraud Risk Management. Built an Email Bot channel with Office Message Encryption for automated, secure fraud-enquiry triage.</p>
+  </div>
+  <div class="job">
+    <div class="job-period-tag">&gt; Feb 2022 – Nov 2023</div>
+    <div class="job-role">Pega Technical Lead / Lead System Architect</div>
+    <div class="job-org">Scotiabank (Contractor) · Toronto, ON</div>
+    <p class="job-desc">WealthOne – Document Processing &amp; Retrieval. Led the Captiva REST integration and the review/approval case flows.</p>
+  </div>
+
+  <div class="toggle-wrap">
+    <button class="toggle-btn" id="historyToggle" onclick="toggleHistory()">
+      <span id="historySymbol">+</span>
+      <span id="historyLabel">SHOW FULL HISTORY (9 MORE YEARS)</span>
+    </button>
+    <div class="full-history" id="fullHistory">
+      <div class="job job-older" style="margin-top:20px;">
+        <div class="job-period-muted">&gt; Jun 2021 – Jan 2022</div>
+        <div class="job-role">Pega Lead System Architect</div>
+        <div class="job-org">Sun Life Financial (Contractor) · Waterloo, ON</div>
+        <p class="job-desc">Choices Wealth – automated the Life &amp; Health Insurance conversion process for customers with changing employment status, across two applications on different frameworks.</p>
+      </div>
+      <div class="job job-older">
+        <div class="job-period-muted">&gt; Nov 2019 – Jun 2021</div>
+        <div class="job-role">Pega Lead System Architect</div>
+        <div class="job-org">Scotiabank (Contractor) · Toronto, ON</div>
+        <p class="job-desc">WealthOne – Document Processing &amp; Retrieval. Built the Captiva REST integration and downstream approval processes.</p>
+      </div>
+      <div class="job job-older">
+        <div class="job-period-muted">&gt; Jun 2019 – Oct 2019</div>
+        <div class="job-role">Pega Lead System Architect</div>
+        <div class="job-org">Sun Life Financial (Contractor) · Waterloo, ON</div>
+        <p class="job-desc">FRM – Fraud Risk Management.</p>
+      </div>
+      <div class="job job-older">
+        <div class="job-period-muted">&gt; Jan 2018 – May 2019</div>
+        <div class="job-role">Pega Senior System Architect</div>
+        <div class="job-org">Scotiabank (Contractor) · Toronto, ON</div>
+        <p class="job-desc">WealthOne – Client Update. Implemented business rules for data integrity and delivered updates to client and account details.</p>
+      </div>
+      <div class="job job-older">
+        <div class="job-period-muted">&gt; Jan 2017 – Dec 2017</div>
+        <div class="job-role">Senior Associate / Team Lead</div>
+        <div class="job-org">Cognizant Technology Solutions · Hyderabad, India</div>
+        <p class="job-desc">GLOS for ANZ Banking Group – global lending origination on the CLMFS framework. Led upgrade-impact analysis and OOTB reconciliation.</p>
+      </div>
+      <div class="job job-older">
+        <div class="job-period-muted">&gt; Oct 2016 – Dec 2016</div>
+        <div class="job-role">Senior Associate / Technical Lead</div>
+        <div class="job-org">Cognizant Technology Solutions · Hyderabad, India</div>
+        <p class="job-desc">PRISM data migration for HealthNet Inc. — migrated legacy PAOS data and delivered search across the full migrated data set.</p>
+      </div>
+      <div class="job job-older">
+        <div class="job-period-muted">&gt; Oct 2015 – Sep 2016</div>
+        <div class="job-role">Pega Technical Specialist</div>
+        <div class="job-org">iGATE Global Solutions · Hyderabad, India</div>
+        <p class="job-desc">RBC US Wealth Management – Archiving. Delivered OOTB Archive/Purge to IBM OnDemand and evaluated BIX as an alternative.</p>
+      </div>
+      <div class="job job-older">
+        <div class="job-period-muted">&gt; Jan 2013 – Sep 2015</div>
+        <div class="job-role">Senior Technical Developer</div>
+        <div class="job-org">iGATE Technologies (Canada) · Toronto, ON</div>
+        <p class="job-desc">RBC Royal Bank – Referral Management System, Business Credit Process Management, and US Wealth Management archiving.</p>
+      </div>
+      <div class="job job-older">
+        <div class="job-period-muted">&gt; Nov 2009 – Dec 2012</div>
+        <div class="job-role">Developer / Technical Lead</div>
+        <div class="job-org">iGATE Global Solutions · Hyderabad, India</div>
+        <p class="job-desc">RBC Royal Bank – US Wealth Management Recurring Cheques, and Technology Integration workflow automation.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div id="skills" class="skills">
+  <div class="section-eyebrow">[ 03 / SKILLS ]</div>
+  <h2 class="section-h2">Stack &amp; toolset.</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-card-title">Pega Platform &amp; Leadership</div>
+      <div class="skill-chips">
+        <span class="chip">Pega Infinity 24.1 / 23.1</span>
+        <span class="chip">Pega 8.x · PRPC 7.x/6.x</span>
+        <span class="chip">Constellation</span>
+        <span class="chip">Email Bot</span>
+        <span class="chip">Pega GenAI</span>
+        <span class="chip">CLMFS</span>
+        <span class="chip">FCM</span>
+        <span class="chip">CPM</span>
+        <span class="chip">PDFS · PCS</span>
+        <span class="chip">BIX</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">Databases &amp; Migration</div>
+      <div class="skill-chips">
+        <span class="chip">IBM DB2</span>
+        <span class="chip">Azure SQL Managed Instance</span>
+        <span class="chip">PostgreSQL</span>
+        <span class="chip">MongoDB</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">Integrations</div>
+      <div class="skill-chips">
+        <span class="chip">REST &amp; SOAP</span>
+        <span class="chip">Kafka</span>
+        <span class="chip">Kofax</span>
+        <span class="chip">Captiva</span>
+        <span class="chip">Email Bot channels</span>
+        <span class="chip">OME</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">Environments &amp; Languages</div>
+      <div class="skill-chips">
+        <span class="chip">WebLogic · Tomcat</span>
+        <span class="chip">Java EE</span>
+        <span class="chip">JavaScript</span>
+        <span class="chip">Node.js / TypeScript</span>
+        <span class="chip">Python</span>
+        <span class="chip">Cloudflare Workers</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SAMSBPM -->
+<div id="samsbpm" class="samsbpm">
+  <div class="samsbpm-inner">
+    <div class="samsbpm-eyebrow">[ 04 / SAMSBPM ]</div>
+    <h2>Building SAMSBPM Technologies.</h2>
+    <p class="samsbpm-intro">Since 2024 I've been founder and technical lead at SAMSBPM, a Canadian software company building multi-tenant SaaS platforms for small and medium businesses. I own architecture, development, and production deployment for every product — the same case lifecycle and RBAC thinking that underpins enterprise Pega delivery, applied on a modern cloud stack.</p>
+    <div class="samsbpm-grid">
+      <div class="samsbpm-card">
+        <div class="samsbpm-card-name">AutoOrder-Sync Ecosystem</div>
+        <div class="samsbpm-card-tag">Flagship multi-tenant order management backbone</div>
+        <div class="samsbpm-chips">
+          <span class="samsbpm-chip">Next.js</span>
+          <span class="samsbpm-chip">Stripe</span>
+          <span class="samsbpm-chip">Cloudflare Workers</span>
+        </div>
+      </div>
+      <div class="samsbpm-card">
+        <div class="samsbpm-card-name">BookingBuddy</div>
+        <div class="samsbpm-card-tag">Multi-tenant reservation platform with AI conversational booking</div>
+        <div class="samsbpm-chips">
+          <span class="samsbpm-chip">NestJS</span>
+          <span class="samsbpm-chip">Next.js 15</span>
+          <span class="samsbpm-chip">OpenAI</span>
+        </div>
+      </div>
+      <div class="samsbpm-card">
+        <div class="samsbpm-card-name">BillBridge</div>
+        <div class="samsbpm-card-tag">Invoice &amp; billing platform with GPT-4o Vision OCR</div>
+        <div class="samsbpm-chips">
+          <span class="samsbpm-chip">GPT-4o Vision</span>
+          <span class="samsbpm-chip">AWS Textract</span>
+          <span class="samsbpm-chip">Prisma</span>
+        </div>
+      </div>
+    </div>
+    <div class="samsbpm-cta">
+      <a href="samsbpm-projects.html" class="samsbpm-view-all">[ VIEW ALL 5 PRODUCTS → ]</a>
+      <a href="https://samsbpm.com" target="_blank" rel="noopener" class="samsbpm-ext">samsbpm.com ↗</a>
+    </div>
+  </div>
+</div>
+
+<!-- CERTIFICATIONS -->
+<div class="certs">
+  <div class="certs-label">CERTIFIED:</div>
+  <span class="cert-badge">[ Pega CSA v7.1 ]</span>
+  <span class="cert-badge">[ Pega CSSA v7.1 ]</span>
+</div>
+
+<!-- HOBBIES -->
+<div id="hobbies" class="hobbies">
+  <div class="section-eyebrow">[ 05 / OFF THE CLOCK ]</div>
+  <h2>Painting, cycling, motorcycling.</h2>
+  <p class="hobbies-intro">Acrylic and watercolor studies, long road-bike loops, and the occasional motorcycle run — the analog counterpart to a career spent building systems.</p>
+
+  <div class="gallery-label">Painting</div>
+  <div class="gallery">
+    <div class="gallery-item" onclick="openLightbox(0)">
+      <img src="assets/painting-1.jpg" alt="Original landscape painting by Sudheer Samudrala">
+    </div>
+    <div class="gallery-item" onclick="openLightbox(1)">
+      <img src="assets/painting-2.jpg" alt="Original painting of a horse by Sudheer Samudrala">
+    </div>
+    <div class="gallery-item" onclick="openLightbox(2)">
+      <img src="assets/painting-3.jpg" alt="Original lakeside painting by Sudheer Samudrala">
+    </div>
+    <div class="gallery-item" onclick="openLightbox(3)">
+      <img src="assets/painting-4.jpg" alt="Original mountain range painting by Sudheer Samudrala">
+    </div>
+  </div>
+
+  <div class="hobby-cards">
+    <div class="hobby-card">
+      <div class="hobby-card-title">Cycling</div>
+      <img src="assets/cycling-enhanced.jpg" alt="Sudheer Samudrala cycling">
+    </div>
+    <div class="hobby-card">
+      <div class="hobby-card-title">Motorcycling</div>
+      <img src="assets/motorcycle-enhanced.jpg" alt="Sudheer Samudrala motorcycling">
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lightboxImg" src="" alt="Painting, larger view">
+  <div class="lightbox-close">[ ✕ CLOSE ]</div>
+</div>
+
+<!-- CONTACT / FOOTER -->
+<div id="contact" class="contact">
+  <div class="contact-inner">
+    <div class="section-eyebrow">[ 06 / CONTACT ]</div>
+    <h2>Let's talk Pega, SAMSBPM, or the next build.</h2>
+    <div class="contact-btns">
+      <a href="mailto:samudralasudheer@gmail.com" class="contact-email">samudralasudheer@gmail.com</a>
+      <a href="http://www.linkedin.com/in/sudheer-kumar-samudrala" target="_blank" rel="noopener" class="contact-link">[ LINKEDIN ↗ ]</a>
+      <a href="https://samsbpm.com" target="_blank" rel="noopener" class="contact-link">[ SAMSBPM.COM ↗ ]</a>
+    </div>
+    <div class="footer-bar">
+      <span>© 2026 Sudheer Samudrala. Waterloo, ON, Canada.</span>
+      <span>+1 (647) 949-6445</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  const paintings = [
+    'assets/painting-1.jpg',
+    'assets/painting-2.jpg',
+    'assets/painting-3.jpg',
+    'assets/painting-4.jpg'
+  ];
+
+  function openLightbox(i) {
+    document.getElementById('lightboxImg').src = paintings[i];
+    document.getElementById('lightbox').classList.add('open');
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  let showFullHistory = false;
+
+  function toggleHistory() {
+    showFullHistory = !showFullHistory;
+    document.getElementById('fullHistory').classList.toggle('visible', showFullHistory);
+    document.getElementById('historySymbol').textContent = showFullHistory ? '−' : '+';
+    document.getElementById('historyLabel').textContent = showFullHistory
+      ? 'HIDE EARLIER ROLES'
+      : 'SHOW FULL HISTORY (9 MORE YEARS)';
+  }
+</script>
+
+</body>
+</html>

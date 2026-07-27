@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Résumé — Sudheer Samudrala</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0a0a0a;
+      --paper: #ffffff;
+      --accent: #d4ff3d;
+      --muted: #5a5a5a;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Space Mono', monospace; background: #e8e8e6; color: var(--ink); }
+
+    /* ── CONTROLS (screen only) ── */
+    .controls {
+      position: sticky; top: 0; z-index: 50;
+      background: var(--ink); color: var(--paper);
+      padding: 14px 32px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;
+      border-bottom: 2px solid #333;
+    }
+    .controls-label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: .06em; }
+    .controls-options { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .toggle-option {
+      display: flex; align-items: center; gap: 8px;
+      cursor: pointer; font-size: 12px; color: #c9c9c9; user-select: none;
+    }
+    .toggle-option input[type="checkbox"] { display: none; }
+    .toggle-box {
+      width: 16px; height: 16px; border: 1px solid #555;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; color: var(--accent); flex-shrink: 0;
+    }
+    .toggle-option input:checked + .toggle-box { border-color: var(--accent); background: #111; }
+    .toggle-option input:checked ~ .toggle-text { color: var(--paper); }
+    .print-btn {
+      text-decoration: none; padding: 10px 20px;
+      background: var(--accent); color: var(--ink); font-weight: 700; font-size: 12px;
+      font-family: 'Space Mono', monospace; border: none; cursor: pointer; white-space: nowrap;
+    }
+    .print-btn:hover { background: #bfe030; }
+
+    /* ── PAGE WRAPPER ── */
+    .page-wrap { padding: 32px; }
+    .page {
+      max-width: 860px; margin: 0 auto;
+      background: var(--paper);
+      border: 1px solid #ccc;
+      padding: 52px 56px;
+    }
+
+    /* ── HEADER ── */
+    .resume-header { border-bottom: 3px solid var(--ink); padding-bottom: 24px; margin-bottom: 32px; }
+    .resume-name { font-size: 28px; font-weight: 700; text-transform: uppercase; letter-spacing: -0.01em; margin: 0 0 6px; }
+    .resume-title { font-size: 13px; color: var(--muted); margin: 0 0 18px; }
+    .resume-contact {
+      display: flex; flex-wrap: wrap; gap: 0;
+      font-size: 11px;
+    }
+    .resume-contact span {
+      padding: 5px 12px; border: 1px solid var(--ink);
+      border-right: none;
+    }
+    .resume-contact span:first-child { border-left: 1px solid var(--ink); }
+    .resume-contact a { color: var(--ink); text-decoration: none; }
+    .resume-contact a:hover { text-decoration: underline; }
+
+    /* ── SECTIONS ── */
+    .section { margin-bottom: 28px; }
+    .section-title {
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .1em; color: var(--muted);
+      border-bottom: 1px solid var(--ink); padding-bottom: 6px; margin-bottom: 16px;
+    }
+
+    /* ── PROFILE ── */
+    .profile p { font-size: 12px; line-height: 1.75; margin: 0 0 8px; }
+    .profile p:last-child { margin: 0; color: var(--muted); }
+
+    /* ── EXPERIENCE ── */
+    .job { margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid #e0e0e0; }
+    .job:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .job-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 3px; }
+    .job-role { font-size: 12px; font-weight: 700; text-transform: uppercase; }
+    .job-period {
+      font-size: 10px; color: var(--paper); background: var(--ink);
+      padding: 2px 8px; white-space: nowrap; flex-shrink: 0;
+    }
+    .job-org { font-size: 11px; color: var(--muted); margin-bottom: 6px; }
+    .job-desc { font-size: 11px; line-height: 1.7; color: #2a2a2a; margin: 0; }
+
+    /* ── SKILLS ── */
+    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .skill-group-title { font-size: 10px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px; }
+    .skill-chips { display: flex; flex-wrap: wrap; gap: 4px; }
+    .chip { font-size: 10px; border: 1px solid #ccc; padding: 3px 7px; color: var(--ink); }
+
+    /* ── CERTIFICATIONS ── */
+    .cert-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .cert-badge { font-size: 11px; border: 1px solid var(--ink); padding: 5px 12px; }
+
+    /* ── SAMSBPM ── */
+    .samsbpm-intro { font-size: 11px; line-height: 1.7; color: var(--muted); margin: 0 0 14px; }
+    .product { margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid #e0e0e0; }
+    .product:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .product-name { font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 2px; }
+    .product-industry { font-size: 10px; color: var(--muted); margin-bottom: 5px; }
+    .product-desc { font-size: 11px; line-height: 1.65; margin: 0 0 6px; }
+    .product-chips { display: flex; flex-wrap: wrap; gap: 4px; }
+
+    /* ── HOBBIES ── */
+    .hobbies-text { font-size: 11px; line-height: 1.7; color: var(--muted); margin: 0; }
+
+    /* ── PRINT ── */
+    @media print {
+      @page { size: A4; margin: 16mm 18mm; }
+
+      body { background: white; }
+      .controls { display: none !important; }
+      .page-wrap { padding: 0; }
+      .page { border: none; padding: 0; max-width: 100%; box-shadow: none; }
+
+      .job-period { background: var(--ink) !important; color: var(--paper) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .section { page-break-inside: avoid; }
+      .job { page-break-inside: avoid; }
+      .product { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- CONTROLS -->
+<div class="controls">
+  <div>
+    <div class="controls-label">Resume options</div>
+  </div>
+  <div class="controls-options">
+    <label class="toggle-option">
+      <input type="checkbox" id="toggleSamsbpm" checked onchange="updateSections()">
+      <span class="toggle-box" id="boxSamsbpm">✓</span>
+      <span class="toggle-text">Include SAMSBPM Technologies</span>
+    </label>
+    <label class="toggle-option">
+      <input type="checkbox" id="toggleHobbies" onchange="updateSections()">
+      <span class="toggle-box" id="boxHobbies"></span>
+      <span class="toggle-text">Include Hobbies</span>
+    </label>
+    <button class="print-btn" onclick="window.print()">[ PRINT / SAVE AS PDF ]</button>
+  </div>
+</div>
+
+<!-- RESUME PAGE -->
+<div class="page-wrap">
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="resume-header">
+    <div class="resume-name">Sudheer Samudrala</div>
+    <div class="resume-title">Pega Lead System Architect · Waterloo, ON, Canada</div>
+    <div class="resume-contact">
+      <span><a href="mailto:samudralasudheer@gmail.com">samudralasudheer@gmail.com</a></span>
+      <span>+1 (647) 949-6445</span>
+      <span><a href="http://www.linkedin.com/in/sudheer-kumar-samudrala" target="_blank" rel="noopener">linkedin.com/in/sudheer-kumar-samudrala</a></span>
+      <span>samsbpm.com</span>
+    </div>
+  </div>
+
+  <!-- PROFILE -->
+  <div class="section profile">
+    <div class="section-title">Profile</div>
+    <p>16+ years designing and delivering Pega solutions across banking, insurance, and healthcare — 13+ of them with Canadian financial institutions. I own solution design, impact analysis, and end-to-end delivery on every engagement, including a full DB2-to-Azure-SQL data migration and two platform version upgrades — handled without drama.</p>
+    <p>I lead distributed onshore/offshore teams through estimation, design review, guardrail compliance, and production support — and stay hands-on with Constellation, Email Bot, Pega GenAI, and REST/SOAP integrations.</p>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="section">
+    <div class="section-title">Experience</div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-role">Pega Technical Lead / Lead Software Engineer</div>
+        <div class="job-period">Jun 2025 – Present</div>
+      </div>
+      <div class="job-org">Sun Life · Waterloo, ON</div>
+      <p class="job-desc">GRS Ops – multi-channel intake (Email, Manual, Kafka, Kofax) routed through a single case lifecycle. Designed the REST integrations with SL Global and the Email Bot channel, alongside the Pega 8.6 → Infinity 24.1 upgrade.</p>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-role">Pega Technical Lead / Lead System Architect</div>
+        <div class="job-period">Jun 2024 – Jun 2025</div>
+      </div>
+      <div class="job-org">Scotiabank (Contractor) · Toronto, ON</div>
+      <p class="job-desc">WealthOne – owned the end-to-end DB2 → Azure SQL Managed Instance data migration (schema mapping, reconciliation, performance validation), delivered alongside the PRPC 7.2 → Infinity 23.1 upgrade.</p>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-role">Pega Technical Lead / Lead System Architect</div>
+        <div class="job-period">Dec 2023 – Jun 2024</div>
+      </div>
+      <div class="job-org">Sun Life (Contractor) · Toronto, ON</div>
+      <p class="job-desc">FRM – Fraud Risk Management. Built an Email Bot channel with Office Message Encryption for automated, secure fraud-enquiry triage.</p>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-role">Pega Technical Lead / Lead System Architect</div>
+        <div class="job-period">Feb 2022 – Nov 2023</div>
+      </div>
+      <div class="job-org">Scotiabank (Contractor) · Toronto, ON</div>
+      <p class="job-desc">WealthOne – Document Processing &amp; Retrieval. Led the Captiva REST integration and the review/approval case flows.</p>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-role">Pega Lead System Architect</div>
+        <div class="job-period">Jun 2021 – Jan 2022</div>
+      </div>
+      <div class="job-org">Sun Life Financial (Contractor) · Waterloo, ON</div>
+      <p class="job-desc">Choices Wealth – automated the Life &amp; Health Insurance conversion process for customers with changing employment status, across two applications on different frameworks.</p>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-role">Pega Lead System Architect</div>
+        <div class="job-period">Nov 2019 – Jun 2021</div>
+      </div>
+      <div class="job-org">Scotiabank (Contractor) · Toronto, ON</div>
+      <p class="job-desc">WealthOne – Document Processing &amp; Retrieval. Built the Captiva REST integration and downstream approval processes.</p>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-role">Pega Lead System Architect</div>
+        <div class="job-period">Jun 2019 – Oct 2019</div>
+      </div>
+      <div class="job-org">Sun Life Financial (Contractor) · Waterloo, ON</div>
+      <p class="job-desc">FRM – Fraud Risk Management.</p>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-role">Pega Senior System Architect</div>
+        <div class="job-period">Jan 2018 – May 2019</div>
+      </div>
+      <div class="job-org">Scotiabank (Contractor) · Toronto, ON</div>
+      <p class="job-desc">WealthOne – Client Update. Implemented business rules for data integrity and delivered updates to client and account details.</p>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-role">Senior Associate / Team Lead</div>
+        <div class="job-period">Jan 2017 – Dec 2017</div>
+      </div>
+      <div class="job-org">Cognizant Technology Solutions · Hyderabad, India</div>
+      <p class="job-desc">GLOS for ANZ Banking Group – global lending origination on the CLMFS framework. Led upgrade-impact analysis and OOTB reconciliation.</p>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-role">Senior Associate / Technical Lead</div>
+        <div class="job-period">Oct 2016 – Dec 2016</div>
+      </div>
+      <div class="job-org">Cognizant Technology Solutions · Hyderabad, India</div>
+      <p class="job-desc">PRISM data migration for HealthNet Inc. — migrated legacy PAOS data and delivered search across the full migrated data set.</p>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-role">Pega Technical Specialist</div>
+        <div class="job-period">Oct 2015 – Sep 2016</div>
+      </div>
+      <div class="job-org">iGATE Global Solutions · Hyderabad, India</div>
+      <p class="job-desc">RBC US Wealth Management – Archiving. Delivered OOTB Archive/Purge to IBM OnDemand and evaluated BIX as an alternative.</p>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-role">Senior Technical Developer</div>
+        <div class="job-period">Jan 2013 – Sep 2015</div>
+      </div>
+      <div class="job-org">iGATE Technologies (Canada) · Toronto, ON</div>
+      <p class="job-desc">RBC Royal Bank – Referral Management System, Business Credit Process Management, and US Wealth Management archiving.</p>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-role">Developer / Technical Lead</div>
+        <div class="job-period">Nov 2009 – Dec 2012</div>
+      </div>
+      <div class="job-org">iGATE Global Solutions · Hyderabad, India</div>
+      <p class="job-desc">RBC Royal Bank – US Wealth Management Recurring Cheques, and Technology Integration workflow automation.</p>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="section">
+    <div class="section-title">Skills</div>
+    <div class="skills-grid">
+      <div>
+        <div class="skill-group-title">Pega Platform &amp; Leadership</div>
+        <div class="skill-chips">
+          <span class="chip">Pega Infinity 24.1 / 23.1</span>
+          <span class="chip">Pega 8.x · PRPC 7.x/6.x</span>
+          <span class="chip">Constellation</span>
+          <span class="chip">Email Bot</span>
+          <span class="chip">Pega GenAI</span>
+          <span class="chip">CLMFS</span>
+          <span class="chip">FCM</span>
+          <span class="chip">CPM</span>
+          <span class="chip">PDFS · PCS</span>
+          <span class="chip">BIX</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title">Databases &amp; Migration</div>
+        <div class="skill-chips">
+          <span class="chip">IBM DB2</span>
+          <span class="chip">Azure SQL Managed Instance</span>
+          <span class="chip">PostgreSQL</span>
+          <span class="chip">MongoDB</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title">Integrations</div>
+        <div class="skill-chips">
+          <span class="chip">REST &amp; SOAP</span>
+          <span class="chip">Kafka</span>
+          <span class="chip">Kofax</span>
+          <span class="chip">Captiva</span>
+          <span class="chip">Email Bot channels</span>
+          <span class="chip">OME</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title">Environments &amp; Languages</div>
+        <div class="skill-chips">
+          <span class="chip">WebLogic · Tomcat</span>
+          <span class="chip">Java EE</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">Node.js / TypeScript</span>
+          <span class="chip">Python</span>
+          <span class="chip">Cloudflare Workers</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CERTIFICATIONS -->
+  <div class="section">
+    <div class="section-title">Certifications</div>
+    <div class="cert-row">
+      <span class="cert-badge">[ Pega CSA v7.1 ]</span>
+      <span class="cert-badge">[ Pega CSSA v7.1 ]</span>
+    </div>
+  </div>
+
+  <!-- SAMSBPM (optional) -->
+  <div class="section" id="section-samsbpm">
+    <div class="section-title">SAMSBPM Technologies — Founder &amp; Technical Lead · 2024–Present</div>
+    <p class="samsbpm-intro">Canadian software company building multi-tenant SaaS platforms for small and medium businesses. I own architecture, development, and production deployment for every product — applying the same case lifecycle, RBAC, and audit-trail thinking that underpins enterprise Pega delivery on a modern cloud stack.</p>
+
+    <div class="product">
+      <div class="product-name">AutoOrder-Sync Ecosystem</div>
+      <div class="product-industry">Flagship · Multi-tenant order management</div>
+      <p class="product-desc">Core REST API with tenant isolation, Stripe payments, email polling, and Google Sheets sync; a Cloudflare Worker WhatsApp commerce bot for conversational ordering; a Next.js admin dashboard with RBAC and tenant management; and a live customer storefront.</p>
+      <div class="product-chips">
+        <span class="chip">Next.js 15</span><span class="chip">Node.js</span><span class="chip">Stripe</span><span class="chip">Cloudflare Workers</span><span class="chip">WhatsApp Business Cloud API</span>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-name">BookingBuddy</div>
+      <div class="product-industry">Universal reservation platform</div>
+      <p class="product-desc">Multi-tenant reservation platform for salons, clinics, restaurants, and sports facilities. Advanced availability engine, reservation state machine with full audit trail, WhatsApp booking, and AI conversational booking via OpenAI function-calling.</p>
+      <div class="product-chips">
+        <span class="chip">Turborepo</span><span class="chip">NestJS</span><span class="chip">Next.js 15</span><span class="chip">OpenAI GPT-4o</span><span class="chip">WhatsApp Business Cloud API</span>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-name">BillBridge (TalentLedger)</div>
+      <div class="product-industry">Invoice &amp; billing for consulting firms</div>
+      <p class="product-desc">Multi-tenant invoice and billing platform with GPT-4o Vision / AWS Textract OCR, four-tier RBAC, approval workflows with full audit trail, financial reporting, and S3-compatible document storage.</p>
+      <div class="product-chips">
+        <span class="chip">Next.js</span><span class="chip">PostgreSQL + Prisma</span><span class="chip">GPT-4o Vision</span><span class="chip">AWS Textract</span>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-name">ServiceScheduler</div>
+      <div class="product-industry">Recurring-service subscriptions</div>
+      <p class="product-desc">Subscription platform for recurring-service businesses — meal delivery, cleaning, laundry. Fixed and configurable plans, Stripe Checkout billing, notification engine, and vendor revenue analytics.</p>
+      <div class="product-chips">
+        <span class="chip">Next.js</span><span class="chip">NestJS</span><span class="chip">Stripe Checkout</span><span class="chip">PostgreSQL</span>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-name">TradingAgent</div>
+      <div class="product-industry">AI stock analysis backend</div>
+      <p class="product-desc">Real-time market data ingestion, RSI / moving-average / volatility feature engineering, XGBoost scoring model, weighted composite BUY/SELL/HOLD signal engine, scheduled background pipeline, and backtesting endpoint.</p>
+      <div class="product-chips">
+        <span class="chip">FastAPI</span><span class="chip">Python</span><span class="chip">XGBoost</span><span class="chip">Docker</span><span class="chip">PM2</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOBBIES (optional) -->
+  <div class="section" id="section-hobbies" style="display:none;">
+    <div class="section-title">Interests</div>
+    <p class="hobbies-text">Painting (acrylic &amp; watercolor studies) · Road cycling · Motorcycling — the analog counterpart to a career spent building systems.</p>
+  </div>
+
+</div><!-- /page -->
+</div><!-- /page-wrap -->
+
+<script>
+  function updateSections() {
+    const samsbpm = document.getElementById('toggleSamsbpm').checked;
+    const hobbies = document.getElementById('toggleHobbies').checked;
+
+    document.getElementById('section-samsbpm').style.display = samsbpm ? '' : 'none';
+    document.getElementById('section-hobbies').style.display = hobbies ? '' : 'none';
+
+    document.getElementById('boxSamsbpm').textContent = samsbpm ? '✓' : '';
+    document.getElementById('boxHobbies').textContent = hobbies ? '✓' : '';
+  }
+
+  // Init state
+  updateSections();
+</script>
+
+</body>
+</html>
