@@ -4,7 +4,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SAMSBPM Products — Sudheer Samudrala</title>
-  <meta name="description" content="5 SaaS products founded, architected, and shipped by Sudheer Samudrala through SAMSBPM Technologies.">
+  <meta name="description" content="5 SaaS products founded, architected, and shipped by Sudheer Samudrala through SAMSBPM Technologies — including AutoOrder-Sync, BookingBuddy, BillBridge, ServiceScheduler, and TradingAgent.">
+  <meta name="keywords" content="Sudheer Samudrala, SAMSBPM Technologies, SaaS products, AutoOrder-Sync, BookingBuddy, BillBridge, ServiceScheduler, TradingAgent, Canadian software company">
+  <meta name="author" content="Sudheer Samudrala">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://sudheer.samudralas.com/samsbpm-projects.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sudheer.samudralas.com/samsbpm-projects.html">
+  <meta property="og:title" content="SAMSBPM Products — Sudheer Samudrala">
+  <meta property="og:description" content="5 SaaS products founded, architected, and shipped by Sudheer Samudrala through SAMSBPM Technologies.">
+  <meta property="og:image" content="https://sudheer.samudralas.com/assets/portrait-enhanced.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/logo/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/logo/apple-touch-icon-180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/logo/android-chrome-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -28,11 +41,14 @@
     .header-back {
       text-decoration: none; color: var(--ink);
       font-family: 'Space Mono', monospace; font-size: 13px;
-      padding: 16px 24px; border-right: 1px solid var(--ink);
+      padding: 14px 20px; border-right: 1px solid var(--ink);
+      display: flex; align-items: center; gap: 12px;
     }
     .header-back:hover { background: var(--ink); color: var(--paper); }
+    .header-back:hover img { filter: invert(1); }
+    .header-back img { height: 26px; display: block; }
     .header-ext {
-      text-decoration: none; padding: 16px 24px;
+      text-decoration: none; padding: 14px 20px;
       color: var(--ink); font-family: 'Space Mono', monospace; font-size: 13px;
     }
     .header-ext:hover { background: var(--ink); color: var(--accent); }
@@ -45,19 +61,19 @@
     }
     .intro-prompt { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
     .intro h1 {
-      font-size: clamp(30px, 4.6vw, 48px); margin: 0 0 22px;
+      font-size: clamp(26px, 4.6vw, 48px); margin: 0 0 22px;
       font-weight: 700; text-transform: uppercase; line-height: 1.15;
     }
-    .intro-body { font-size: 16px; line-height: 1.75; max-width: 760px; margin: 0 0 18px; }
-    .intro-relevance { font-size: 14px; line-height: 1.7; color: var(--muted); max-width: 760px; margin: 0; }
+    .intro-body { font-size: 15px; line-height: 1.75; max-width: 760px; margin: 0 0 18px; }
+    .intro-relevance { font-size: 13px; line-height: 1.7; color: var(--muted); max-width: 760px; margin: 0; }
     .intro-relevance strong { color: var(--ink); }
 
     /* PROJECTS */
     .projects { max-width: 1100px; margin: 0 auto; }
     .project { padding: 36px 40px; border-bottom: 1px solid var(--ink); }
-    .project-name { font-size: 20px; font-weight: 700; text-transform: uppercase; }
+    .project-name { font-size: 18px; font-weight: 700; text-transform: uppercase; }
     .project-industry { font-size: 12px; color: var(--muted); margin-top: 6px; margin-bottom: 14px; }
-    .project-desc { font-size: 15px; line-height: 1.7; margin: 0 0 18px; max-width: 760px; }
+    .project-desc { font-size: 14px; line-height: 1.7; margin: 0 0 18px; max-width: 760px; }
     .project-chips { display: flex; flex-wrap: wrap; gap: 6px; }
     .chip { font-size: 11px; border: 1px solid var(--ink); padding: 5px 9px; }
 
@@ -68,7 +84,7 @@
     }
     .cta-inner { max-width: 640px; margin: 0 auto; }
     .cta h2 {
-      font-size: clamp(20px, 2.6vw, 28px); font-weight: 700;
+      font-size: clamp(18px, 2.6vw, 28px); font-weight: 700;
       margin: 0 0 20px; text-transform: uppercase;
     }
     .cta-btns { display: flex; flex-wrap: wrap; justify-content: center; }
@@ -86,11 +102,17 @@
     .cta-secondary:hover { background: var(--paper); color: var(--ink); }
 
     /* FOOTER */
-    .footer { padding: 20px 40px; text-align: center; font-size: 12px; color: var(--muted); }
+    .footer { padding: 20px 40px; text-align: center; font-size: 12px; color: var(--muted); border-top: 1px solid #e0e0e0; }
+    .footer a { color: var(--muted); text-decoration: none; }
+    .footer a:hover { color: var(--ink); }
 
-    @media (max-width: 700px) {
-      .intro, .project { padding-left: 24px; padding-right: 24px; }
-      .cta { padding-left: 24px; padding-right: 24px; }
+    @media (max-width: 600px) {
+      .intro, .project { padding-left: 20px; padding-right: 20px; }
+      .cta { padding-left: 20px; padding-right: 20px; }
+      .footer { padding-left: 20px; padding-right: 20px; }
+      .header-back { font-size: 12px; padding: 12px 16px; }
+      .cta-btns { flex-direction: column; align-items: center; }
+      .cta-secondary { border-left: 2px solid var(--paper); border-top: none; }
     }
   </style>
 </head>
@@ -98,7 +120,10 @@
 
 <!-- HEADER -->
 <header class="header">
-  <a href="index.html" class="header-back">[ ← BACK TO PORTFOLIO ]</a>
+  <a href="index.html" class="header-back">
+    <img src="assets/logo/logo-icon-light-bg.svg" alt="Sudheer Samudrala">
+    [ ← BACK TO PORTFOLIO ]
+  </a>
   <a href="https://samsbpm.com" target="_blank" rel="noopener" class="header-ext">samsbpm.com ↗</a>
 </header>
 
@@ -184,7 +209,10 @@
 </div>
 
 <!-- FOOTER -->
-<div class="footer">© 2026 Sudheer Samudrala. SAMSBPM Technologies Inc., Ontario, Canada.</div>
+<div class="footer">
+  <p style="margin:0 0 6px;">© 2026 Sudheer Samudrala. SAMSBPM Technologies Inc., Ontario, Canada.</p>
+  <p style="margin:0;">Built by <a href="https://samsbpmtechnologies.ca" target="_blank" rel="noopener">SAMSBPM Technologies Inc</a></p>
+</div>
 
 </body>
 </html>
