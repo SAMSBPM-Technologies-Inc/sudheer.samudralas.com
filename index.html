@@ -55,6 +55,7 @@
   }
   </script>
 
+  <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/logo/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/logo/apple-touch-icon-180.png">
@@ -87,12 +88,13 @@
     .nav-logo:hover { background: var(--ink); }
     .nav-logo:hover img { filter: invert(1); }
     .nav-logo img { height: 30px; display: block; }
-    .nav-logo-icon { display: none !important; }
+    .nav-logo-lockup { display: none !important; }
+    .nav-logo-icon { display: block !important; height: 30px; }
     .nav-logo-name {
-      display: none;
+      display: flex;
       flex-direction: column; justify-content: center;
       font-family: 'Space Mono', monospace; font-weight: 700;
-      font-size: 13px; line-height: 1.25; letter-spacing: 0.02em;
+      font-size: 13px; line-height: 1.1; letter-spacing: 0.02em;
       color: var(--ink); text-transform: uppercase; margin-left: 12px;
     }
     .nav-logo:hover .nav-logo-name { color: var(--paper); }
@@ -367,9 +369,8 @@
       .nav-links, .nav-resume { display: none; }
       .nav-hamburger { display: block; }
       .nav { position: relative; }
-      .nav-logo-lockup { display: none !important; }
-      .nav-logo-icon { display: block !important; height: 36px; }
-      .nav-logo-name { display: flex; }
+      .nav-logo-icon { height: 36px; }
+      .nav-logo-name { font-size: 13px; }
     }
 
     @media (max-width: 600px) {
